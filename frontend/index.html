@@ -6,7 +6,44 @@
     <title>AI Blog Generator</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-  
+     <style>
+        @keyframes rotate{
+            from{
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+        @-webkit-keyframes rotate{
+            from{
+                -webkit-transform: rotate(0deg);
+            }
+            to {
+                -webkit-transform: rotate(360deg);
+            }
+        }
+        .load {
+            width: 100px;
+            height: 100px;
+            margin: 110px auto 0;
+            border: solid 10px #8822aa;
+            border-radius: 50%;
+            border-right-color: transparent;
+            border-bottom-color: transparent;
+             -webkit-transition: all 0.5s ease-in;
+             -webkit-animation-name: rotate;
+             -webkit-animation-duration: 1.0s;
+             -webkit-animation-iteration-count: infinite;
+             -webkit-animation-timing-function: linear;
+            transition: all 0.5s ease-in;
+            animation-name: rotate;
+            animation-duration: 1.0s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+
+        }
+     </style>
 </head>
 <body class="flex flex-col min-h-screen bg-gray-100 font-sans antialised">
     <!-- Navbar -->
@@ -44,7 +81,7 @@
              </div>
 
               <!-- section for loading circle -->
-               <div id="loading"></div>
+               <div style="display: none;" id="loading-circle" class="load"></div>
 
              <!-- Generate Blog Display Section -->
               <section class="mt-10 flex-grow">
