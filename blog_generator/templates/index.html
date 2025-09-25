@@ -7,6 +7,25 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
      <style>
+    .blog-article {
+        line-height: 1.6;
+    }
+    .blog-article h2, .blog-article h3, .blog-article h4 {
+        color: #2d3748;
+        margin-top: 1.5em;
+        margin-bottom: 0.5em;
+    }
+    .blog-article ul, .blog-article ol {
+        margin-left: 1.5em;
+        margin-bottom: 1em;
+    }
+    .blog-article li {
+        margin-bottom: 0.5em;
+    }
+    .blog-article p {
+        margin-bottom: 1em;
+    }
+
         @keyframes rotate{
             from{
                 transform: rotate(0deg);
@@ -99,32 +118,31 @@
       <script>
         document.getElementById('generateBlogButton').addEventListener('click',async() =>{
             const youtubeLink=document.getElementById('youtubeLink').value;
-            const loadingIndicator = document.getElementById('loading');
             const blogContent = document.getElementById('blogContent');
 
             if (youtubeLink){
                 document.getElementById('loading-circle').style.display='block';
-                loadingIndicator.classList.remvoe('hidden');
+               
                 blogContent.innerHTML=''
 
-                const endpointUrl='generate-blog';
+                const endpointUrl='/generate-blog';
                 try{
                     const respose= await fetch(endpointUrl,{
                         method:'POST',
                         headers:{
                             'Content-Type':'application/json',
                         },
-                        body:JSON.stringify{{ link:youtubeLink }}
+                        body:JSON.stringify({ link:youtubeLink })
                     });
 
                     const data= await respose.json();
 
                     blogContent.innerHTML = data.content;
-                    loadingIndicator.classList.add('hidden')
+                    
                 } catch(error){
                     console.error("Error occurred",error);
                     alert("Something went wrong. Please try again later.");
-                    loadingIndicator.classList.add('hidden');
+                    
                 }
                 document.getElementById('loading-circle').style.display='none';
             } else {
